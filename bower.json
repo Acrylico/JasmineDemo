@@ -1,0 +1,16 @@
+{
+  "name": "myApp",
+  "version": "0.1.0",
+  "dependencies": {
+	"angular": "latest",
+	"angular-route": "latest",
+	"angular-mocks": "latest",
+	"angular-animate": "latest",
+	"angular-cookies": "latest",
+	"angular-loader": "latest",
+	"angular-resource": "latest",
+	"angular-sanitize": "latest",
+	"angular-touch": "latest",
+    "jasmine":"latest"
+  }
+}
