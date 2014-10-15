@@ -19,19 +19,22 @@ describe("myController Tests", function () {
     });
 	
 	it("should have a person object", function () {
+        // arrange
+
+        // act
+
+        // assert
         expect(scope.person).toBeDefined();
-        expect(scope.person).toEqual({
-            name: "",
-            age: 0,
-            gender: ""
-		});
     });
 	
 	it("should initialize the person object when initPerson() is called", function () {
+        // arrange
         var name = "Guy Gardener", age = 30, gender = "male";
-		
+
+        // act
 		scope.initPerson(name, age, gender);
 
+        // assert
         expect(scope.person).toEqual({
             name: name,
             age: age,
@@ -40,27 +43,43 @@ describe("myController Tests", function () {
     });
 
     it("should log success when a makeCall receives a 200", function () {
+        // arrange
+        var person = {
+            name: "Guy Gardener",
+            age: 30,
+            gender: "male"
+        };
+
         httpBackend.expectPOST("/api/person").respond(200, {result: "success"});
         spyOn(console, 'log').and.callFake(function(str){
             expect(str).toBe("Success! :D");
         });
-        scope.person.name = "Guy Gardener";
-        scope.person.age = 30;
-        scope.person.gender = "male";
-        scope.makeCall(scope.person);
+
+        // act
+        scope.makeCall(person);
+
+        // assert
         httpBackend.flush();
         expect(console.log.calls.count()).toEqual(1);
     });
 
     it("should log an error when a makeCall does not receive a 200", function () {
+        // arrange
+        var person = {
+            name: "Guy Gardener",
+            age: 30,
+            gender: "male"
+        };
+
         httpBackend.expectPOST("/api/person").respond(500, {result: "error"});
         spyOn(console, 'log').and.callFake(function(str){
             expect(str).toBe("Failure! :(");
         });
-        scope.person.name = "Guy Gardener";
-        scope.person.age = 30;
-        scope.person.gender = "male";
-        scope.makeCall(scope.person);
+
+        // act
+        scope.makeCall(person);
+
+        // assert
         httpBackend.flush();
         expect(console.log.calls.count()).toEqual(1);
     });
